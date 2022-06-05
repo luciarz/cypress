@@ -18,6 +18,11 @@ class ProductsPage{
         cy.xpath(this.btnAddCart).click();
     }
 
+    rightClickAddToCart(){
+        //cy.xpath(this.btnAddCart).rightclick({ctrlKey: true});
+        cy.xpath(this.btnAddCart).invoke('trigger', 'contextmenu')
+    }
+
     //Funcionalidade
     checkIfProductExists(){
         this.assertProductsShould("exist");

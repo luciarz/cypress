@@ -11,7 +11,7 @@ describe("Funcionalidad de login",()=>{
     beforeEach(()=>{
         cy.visit("www.saucedemo.com/"); 
     });
-/*
+
     it("Login com sucesso",()=>{
         loginPage.realizedLogin("standard_user","secret_sauce");
 
@@ -43,13 +43,20 @@ describe("Funcionalidad de login",()=>{
         cy.get('[data-test="error"]').contains("Username and password do not match any user in this service");
 
         }); 
-*/
-    it("Login e adicionar produto no carrinho", ()=>{
+
+    it("Login e adicionar produto no carrinho com sucesso", ()=>{
         loginPage.realizedLogin("standard_user","secret_sauce");
         productsPage.checkIfProductExists();
         productsPage.clickAddToCart();
         productsPage.goToCart();
         cartPage.checkIfCartExists();
         cartPage.removeItem();
+    })
+
+    it("Login e tentar adicionar produto no carrinho com click direito", ()=>{
+        loginPage.realizedLogin("standard_user","secret_sauce");
+        productsPage.checkIfProductExists();
+        productsPage.rightClickAddToCart();
+        
     })
 });
