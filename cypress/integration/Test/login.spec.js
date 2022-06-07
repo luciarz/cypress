@@ -1,11 +1,8 @@
-
-import CartPage from "../../pages/cart_page";
 import LoginPage from "../../pages/login_page"
 import ProductsPage from "../../pages/products_page";
 
 var loginPage = new LoginPage();
 var productsPage = new ProductsPage();
-var cartPage = new CartPage();
 
 describe("Funcionalidad de login",()=>{
     beforeEach(()=>{
@@ -42,21 +39,5 @@ describe("Funcionalidad de login",()=>{
         cy.get('[data-test="error"]').should("contain.text","Username and password do not match any user in this service");
         cy.get('[data-test="error"]').contains("Username and password do not match any user in this service");
 
-        }); 
-
-    it("Login e adicionar produto no carrinho com sucesso", ()=>{
-        loginPage.realizedLogin("standard_user","secret_sauce");
-        productsPage.checkIfProductExists();
-        productsPage.clickAddToCart();
-        productsPage.goToCart();
-        cartPage.checkIfCartExists();
-        cartPage.removeItem();
-    })
-
-    it("Login e tentar adicionar produto no carrinho com click direito", ()=>{
-        loginPage.realizedLogin("standard_user","secret_sauce");
-        productsPage.checkIfProductExists();
-        productsPage.rightClickAddToCart();
-        
-    })
+        });     
 });
