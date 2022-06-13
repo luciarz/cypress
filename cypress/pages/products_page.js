@@ -31,7 +31,7 @@ class ProductsPage{
         });
     }
 
-    clickToComparePrice(){
+    /*clickToComparePrice(){
         var price = 0;
         
         cy.get(this.lblItem).each((itens)=>{
@@ -53,7 +53,7 @@ class ProductsPage{
             })
         });
         return ("ok");
-    }
+    }*/
 
     getPrice(element){
        /* cy.wrap(element).find('.inventory_item_price').invoke("text").then((text)=>{
