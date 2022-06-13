@@ -8,13 +8,13 @@ var productsPage = new ProductsPage();
 var cartPage = new CartPage();
 var productDetailsPage = new ProductsDetailsPage();
 
-describe("Funcionalidad de cart shopping",()=>{
+describe("Funcionalidade do produto",()=>{
     beforeEach(()=>{
         cy.visit("www.saucedemo.com/"); 
         loginPage.realizedLogin("standard_user","secret_sauce");
 
     });
-
+/*
     it("Login e adicionar produto no carrinho com sucesso", ()=>{
         productsPage.checkIfProductExists();
         productsPage.clickAddToCart();
@@ -36,5 +36,23 @@ describe("Funcionalidad de cart shopping",()=>{
         productDetailsPage.goToCart();
         cartPage.checkIfCartExists();
         cartPage.checkIsCartEmpty();
+    })
+
+    it("Login e visualizar tela do produto", ()=>{
+        productsPage.checkIfProductExists();
+        productsPage.clickToDetails();
+        //productsPage.clickFirstImage();
+        //productDetailsPage.checkIfProductDetailsExists();
+        
+    })
+*/
+    it("Login e comparar preco do produto", ()=>{
+        productsPage.checkIfProductExists();
+        var items = productsPage.getItems();
+        items.each((item)=>{
+            //cy.wrap(item);
+            var price = productsPage.getPrice(item);
+            //cy.log(price);
+        });
     })
 });

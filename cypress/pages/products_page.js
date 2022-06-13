@@ -3,7 +3,9 @@ class ProductsPage{
     lblProducts = '.title';
     lblCart = '.shopping_cart_link';
     btnAddCart = '(//button[contains(.,"Add to cart")])[1]';
-    lblItemImage = '(//img[@class="inventory_item_img"])[1]';
+    lblFirstItemImage = '(//img[@class="inventory_item_img"])[1]';
+    lblItemImage = '//img[@class="inventory_item_img"]';
+    lblItem = '.inventory_item';
    
     //Acoes
 
@@ -11,8 +13,55 @@ class ProductsPage{
         cy.get(this.lblProducts).should(type);
     }
 
-    clickImage(){
-        cy.xpath(this.lblItemImage).click();
+    clickFirstImage(){
+        cy.xpath(this.lblFirstItemImage).click();
+    }
+
+    clickToDetails(){
+        cy.get(this.lblItem).each((itens)=>{
+            cy.wrap(itens).each((item)=>{
+                cy.wrap(item).find('.inventory_item_name').invoke("text").then((text)=>{
+                    var nome = text;
+                    //cy.log(text);
+                    
+
+
+                });
+            })
+        });
+    }
+
+    clickToComparePrice(){
+        var price = 0;
+        
+        cy.get(this.lblItem).each((itens)=>{
+            cy.wrap(itens).each((item)=>{
+                cy.wrap(item).find('.inventory_item_price').invoke("text").then((text)=>{
+                    price = text;
+                    cy.log(price);
+                    
+                    //cy.log(text);
+                    
+
+
+                });
+               cy.wrap(item).find('.inventory_item_img').each((e,index)=>{
+                    if(index==1){
+                        e.click();
+                    }
+               });
+            })
+        });
+        return ("ok");
+    }
+
+    getPrice(element){
+       /* cy.wrap(element).find('.inventory_item_price').invoke("text").then((text)=>{
+            //cy.log(text);
+            return(text);
+        });*/
+        cy.wrap(element).find('.inventory_item_price').invoke("text").as('price');
+        cy.get('@price');
     }
 
     goToCart(){
@@ -27,10 +76,15 @@ class ProductsPage{
         cy.xpath(this.btnAddCart).invoke('trigger', 'contextmenu')
     }
 
+    getItems(){
+        return(cy.get(this.lblItem));
+    }
+
     //Funcionalidade
     checkIfProductExists(){
         this.assertProductsShould("exist");
     }
+
 }
 
 export default ProductsPage
