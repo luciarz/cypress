@@ -51,8 +51,25 @@ describe("Funcionalidade do produto",()=>{
         var items = productsPage.getItems();
         items.each((item)=>{
             //cy.wrap(item);
+            //cy.log(item);
             var price = productsPage.getPrice(item);
+            cy.get('@price').then((p)=>{
+                cy.log(p);
+                /**************************
+                    Ao trocar de page, o item perde
+                    a referencia do DOM
+                ***************************/
+
+                //productsPage.clickImage(item);
+                //productsPage.clickFirstImage();
+                //productDetailsPage.checkIfProductDetailsExists();
+                //productDetailsPage.comparePrice(p);
+                //productDetailsPage.goBack();
+            });            
             //cy.log(price);
         });
+        //productsPage.clickFirstImage();
+        //productDetailsPage.checkIfProductDetailsExists();
+       // productDetailsPage.comparePrice('$29.99');
     })
 });

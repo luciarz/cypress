@@ -61,7 +61,8 @@ class ProductsPage{
             return(text);
         });*/
         cy.wrap(element).find('.inventory_item_price').invoke("text").as('price');
-        cy.get('@price');
+        //cy.get('@price');
+
     }
 
     goToCart(){
@@ -78,6 +79,15 @@ class ProductsPage{
 
     getItems(){
         return(cy.get(this.lblItem));
+    }
+
+    clickImage(element){
+        cy.log(element);
+        cy.get(element).find('.inventory_item_img').each((e,index)=>{
+            if(index==1){
+                e.click();
+            }
+        });
     }
 
     //Funcionalidade
